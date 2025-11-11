@@ -35,13 +35,18 @@ void MainWindow::odswiezListe(){
     m_managerWpisow->sortujListeWpisow();
 
     ui->WidokListyWpisow->clear();
-    for(Wpis wpis : m_managerWpisow->getWpisy()){
+    for(int i = 0; i < m_managerWpisow->getWpisy().size(); i++){
+
+        if( i > 0){
+            ui->WidokListyWpisow->append("------------------------------------------------------------------------------------");
+        }
+
+        Wpis wpis = m_managerWpisow->getWpisy()[i];
 
         QString sformatowanaData = QString("<b>%1</b>").arg(wpis.getCreationDate().toString());
 
         ui->WidokListyWpisow->append(sformatowanaData);
         ui->WidokListyWpisow->append(wpis.getContent());
-        ui->WidokListyWpisow->append("------------------------------------------------------------------------------------");
     }
 }
 
